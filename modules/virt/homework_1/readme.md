@@ -1,5 +1,5 @@
 Задача 1
-_@compute-vm-2-2-30-hdd-1777920893475:~$ docker --version
+ravvka@compute-vm-2-2-30-hdd-1777920893475:~$ docker --version
 Docker version 20.10.21, build 20.10.21-0ubuntu1~22.04.3
 
 
