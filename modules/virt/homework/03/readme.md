@@ -1,8 +1,8 @@
-task-1: https://hub.docker.com/repository/docker/ravvka/custom-nginx/general
+# TASK-1: https://hub.docker.com/repository/docker/ravvka/custom-nginx/general
 
-task-2: ![img.png](task-02/img.png)
+# TASK-2: ![img.png](task-02/img.png)
 
-task-3:
+# TASK-3:
 1-3
 ![img_1.png](task-03/img_1.png)
     3 - командой attach мы зашли в основной поток контейнера. При нажатии Ctrl+C мы его завершили.
@@ -20,3 +20,12 @@ task-3:
 
 12  
 ![img.png](task-03/img_5.png)
+
+# TASK-4
+
+1-2
+![img_1.png](task-04/img_1.png)
+3-5
+![img_2.png](task-04/img_2.png)
+
+# TASK-5
