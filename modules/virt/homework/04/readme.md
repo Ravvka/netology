@@ -39,4 +39,14 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "5000"]
 ![img.png](task-3/img.png)
 
 # TASK-4
+https://github.com/Ravvka/shvirtd-example-python.git
+![img.png](task-4/img.png)
+
+# TASK-6
+1. исследование   
+![img_1.png](task-6/img_1.png)
+![img_2.png](task-6/img_2.png)
+
+2. сохранение и распаковка   
+![img_3.png](task-6/img_3.png)
 
