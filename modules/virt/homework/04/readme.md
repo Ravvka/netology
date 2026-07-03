@@ -33,4 +33,10 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "5000"]
 4. в main.py изменил имя таблицы на переменную db_table_name = os.environ.get('DB_TABLE_NAME', 'requests')
 ![img.png](task-1/img.png)
 
-# TASK-2
+# TASK-2*
+
+# TASK-3
+![img.png](task-3/img.png)
+
+# TASK-4
+
