@@ -43,10 +43,13 @@ https://github.com/Ravvka/shvirtd-example-python.git
 ![img.png](task-4/img.png)
 
 # TASK-6
-1. исследование   
+1. исследование: файл появился в последнем слое   
 ![img_1.png](task-6/img_1.png)
-![img_2.png](task-6/img_2.png)
-
-2. сохранение и распаковка   
-![img_3.png](task-6/img_3.png)
-
+![img_2.png](task-6/img_2.png)   
+2. сохранение и распаковка    
+![img_3.png](task-6/img_3.png)   
+3. смотрим в манифесте, в разделе "Layers" какой слой был записан последним  
+(ранее это можно было узнать в dive, но сейчас в Id пишет "blobs")   
+![img_4.png](task-6/img_4.png)
+4. проверяем сжат ли слой, распаковываем и получаем бинарник   
+![img_5.png](task-6/img_5.png)
