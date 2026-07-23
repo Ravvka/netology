@@ -29,6 +29,32 @@ variable "vpc_name" {
   description = "VPC network & subnet name"
 }
 
+variable "vm_web_ubuntu_family" {
+    type = string
+    default = "ubuntu-2004-lts"
+}
+
+variable "vm_web_platform_config" {
+  type = object({
+    name          = string
+    platform_id   = string
+    cores         = number
+    memory        = number
+    core_fraction = number
+    preemptible   = bool
+    nat           = bool
+  })
+
+  default = {
+    name          = "netology-develop-platform-web"
+    platform_id   = "standard-v3"
+    cores         = 2
+    memory        = 1
+    core_fraction = 20
+    preemptible   = true
+    nat           = true
+  }
+}
 
 ###ssh vars
 
