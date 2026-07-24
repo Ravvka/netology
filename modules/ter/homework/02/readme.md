@@ -21,3 +21,8 @@
 # TASK-4
 ![img.png](task-4/img.png)
 
+# TASK-5
+[locals.tf](src/locals.tf)
+
+# TASK-6
+Чуть перестарался и занёс больше [vms_platform.tf](src/vms_platform.tf)
