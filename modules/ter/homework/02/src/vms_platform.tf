@@ -6,7 +6,6 @@ variable "vm_web_ubuntu_family" {
 
 variable "vm_web_platform_config" {
   type = object({
-    name          = string
     platform_id   = string
     cores         = number
     memory        = number
@@ -16,7 +15,6 @@ variable "vm_web_platform_config" {
   })
 
   default = {
-    name          = "netology-develop-platform-web"
     platform_id   = "standard-v3"
     cores         = 2
     memory        = 1
@@ -28,7 +26,6 @@ variable "vm_web_platform_config" {
 
 variable "vm_db_platform_config" {
   type = object({
-    name          = string
     platform_id   = string
     zone          = string
     cores         = number
@@ -39,7 +36,6 @@ variable "vm_db_platform_config" {
   })
 
   default = {
-    name          = "netology-develop-platform-db"
     platform_id   = "standard-v3"
     zone          = "ru-central1-b"
     cores         = 2
