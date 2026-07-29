@@ -1,31 +1,32 @@
-resource "yandex_compute_instance" "count_db" {
-  count = 2
-  name = "${local.vm_db_name}-${var.each_vm[count.index].name}"
+resource "yandex_compute_instance" "each_db" {
+  for_each = { for vm in var.each_vm : vm.name => vm }
 
+  name = "${local.vm_db_name}-${each.value.name}"
   platform_id = var.platform_id
   zone        = var.default_zone
+  
   resources {
-    cores         = var.each_vm[count.index].cores
-    memory        = var.each_vm[count.index].memory
-    core_fraction = var.each_vm[count.index].core_fraction
+    cores         = each.value.cores
+    memory        = each.value.memory
+    core_fraction = each.value.core_fraction
   }
   boot_disk {
     initialize_params {
       image_id = data.yandex_compute_image.ubuntu.image_id
-      size     = var.each_vm[count.index].disk_volume
+      size     = each.value.disk_volume
     }
   }
   scheduling_policy {
-    preemptible = var.each_vm[count.index].preemptible
+    preemptible = each.value.preemptible
   }
   network_interface {
     subnet_id          = yandex_vpc_subnet.develop.id
-    nat                = var.each_vm[count.index].nat
+    nat                = each.value.nat
     security_group_ids = [yandex_vpc_security_group.example.id]
   }
 
   metadata = {
     serial-port-enable = 1
-    ssh-keys           = "${var.each_vm[count.index].user}:${local.pub_ssh_key}"
+    ssh-keys           = "${each.value.user}:${local.pub_ssh_key}"
   }
 }

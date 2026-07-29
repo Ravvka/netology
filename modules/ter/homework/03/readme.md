@@ -5,3 +5,6 @@
 ![img.png](task-2/img.png)
 
 # TASK-3
+![img.png](task-3/img.png)
+
+# TASK-4

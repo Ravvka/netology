@@ -1,6 +1,13 @@
-resource "yandex_compute_instance" "count_web" {
-  count = 2
-  name = "${local.vm_web_name}-${count.index + 1}"
+resource "yandex_compute_disk" "shared_disks" {
+  count = 3
+  name  = "volume-${count.index}"
+  type  = "network-hdd"
+  zone  = var.default_zone
+  size  = 1
+}
+
+resource "yandex_compute_instance" "storage" {
+  name = "${local.vm_storage_name}"
 
   platform_id = var.platform_id
   zone        = var.default_zone
@@ -14,9 +21,19 @@ resource "yandex_compute_instance" "count_web" {
       image_id = data.yandex_compute_image.ubuntu.image_id
     }
   }
+
+  dynamic "secondary_disk" {
+    for_each = toset(yandex_compute_disk.shared_disks[*].id)
+    content {
+      disk_id     = secondary_disk.value
+      auto_delete = false
+    }
+  }
+
   scheduling_policy {
     preemptible = var.vms_resources.preemptible
   }
+
   network_interface {
     subnet_id          = yandex_vpc_subnet.develop.id
     nat                = var.vms_resources.nat
@@ -27,8 +44,4 @@ resource "yandex_compute_instance" "count_web" {
     serial-port-enable = 1
     ssh-keys           = "${var.vms_resources.user}:${var.public_ssh_key}"
   }
-
-  depends_on = [
-    yandex_compute_instance.each_db
-  ]
 }
