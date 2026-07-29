@@ -1,14 +1,6 @@
-data "yandex_compute_image" "ubuntu" {
-  family = var.image_family
-}
-
-resource "time_sleep" "wait" {
-  create_duration = "60s" # ждём 60 секунд после создания первого экземпляра
-}
-
 resource "yandex_compute_instance" "count_web" {
   count = 2
-  name = "netology-develop-platform-web-${count.index + 1}"
+  name = "${local.vm_web_name}-${count.index + 1}"
 
   platform_id = var.platform_id
   zone        = var.default_zone
@@ -26,20 +18,17 @@ resource "yandex_compute_instance" "count_web" {
     preemptible = var.vms_resources.preemptible
   }
   network_interface {
-    subnet_id = yandex_vpc_subnet.develop.id
-    nat       = var.vms_resources.nat
+    subnet_id          = yandex_vpc_subnet.develop.id
+    nat                = var.vms_resources.nat
+    security_group_ids = [yandex_vpc_security_group.example.id]
   }
 
   metadata = {
     serial-port-enable = 1
-    ssh-keys           = "ubuntu:${var.public_ssh_key}"
+    ssh-keys           = "${var.vms_resources.user}:${var.public_ssh_key}"
   }
 
   depends_on = [
-    time_sleep.wait
+    yandex_compute_instance.count_db
   ]
-
-  timeouts {
-    create = "5m"
-  }
 }

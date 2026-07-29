@@ -1,3 +1,14 @@
+###company vars
+variable "company" {
+  type = string
+  default = "netology"
+}
+
+variable "stand" {
+  type = string
+  default = "develop"
+}
+
 ###cloud vars
 variable "token" {
   type        = string
@@ -48,11 +59,53 @@ variable "vms_resources" {
     core_fraction = 20
     preemptible   = true
     nat           = false
+    user          = "ubuntu"
   }
 }
 
+variable "each_vm" {
+  type    = list(object({
+                    name          = string,
+                    cores         = number,
+                    memory        = number,
+                    core_fraction = number,
+                    disk_volume   = number,
+                    preemptible   = bool,
+                    nat           = bool,
+                    user          = string
+                  }))
+  default = [
+      {
+        name       = "main"
+        cores         = 4
+        memory        = 2
+        core_fraction = 20
+        disk_volume   = 10
+        preemptible   = true
+        nat           = false
+        user          = "db_user"
+      },
+      {
+        name       = "replica"
+        cores         = 2
+        memory        = 1
+        core_fraction = 20
+        disk_volume   = 5
+        preemptible   = true
+        nat           = false
+        user          = "db_user"
+      }
+
+    ]
+}
+
 # ssh
+variable "home_path" {
+  type        = string
+  description = "User home dir full path"
+}
+
 variable "public_ssh_key" {
-  type = string
+  type        = string
   description = "Публичный SSH-ключ для доступа к ВМ"
 }
