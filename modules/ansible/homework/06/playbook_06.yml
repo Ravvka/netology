@@ -1,0 +1,10 @@
+---
+- name: Create a file with my own module
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: Create text file
+      my_own_module:
+        path: /tmp/my_own_module_test.txt
+        content: "Hello from my own module!"

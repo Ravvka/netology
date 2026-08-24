@@ -5,7 +5,7 @@
 *.ear
 *.nar
 *.zip
-*.tar.gz
+#*.tar.gz
 *.rar
 
 # Logs
